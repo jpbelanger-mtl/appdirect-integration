@@ -54,7 +54,6 @@ dependencies {
     compile 'org.webjars:angular-ui-bootstrap:0.12.1-1'
 	
 	runtime('org.hsqldb:hsqldb')
-	compile('mysql:mysql-connector-java')
 	compile('javax.servlet:jstl')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper')

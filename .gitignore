@@ -6,3 +6,7 @@ bin
 .project
 .classpath
 build
+db.hsql.lck
+db.hsql.log
+db.hsql.properties
+db.hsql.script

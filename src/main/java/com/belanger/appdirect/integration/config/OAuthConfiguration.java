@@ -16,7 +16,6 @@ import org.springframework.security.oauth.provider.token.OAuthProviderTokenServi
 import org.springframework.security.openid.OpenIDAuthenticationToken;
 import org.springframework.security.openid.OpenIDConsumer;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -69,26 +68,6 @@ public class OAuthConfiguration {
 		}
 	}
 
-/*	@Order(20)
-	@Configuration
-	public static class WebAppOAuthConfiguration extends WebSecurityConfigurerAdapter {
-		@Autowired
-		private AuthenticationEntryPoint authenticationEntryPoint;
-
-		@Autowired
-		private ProtectedResourceProcessingFilter prpf;
-
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			http
-				.antMatcher("/index.html")
-				.csrf().disable()
-				.authorizeRequests().anyRequest().authenticated()
-					.and()
-						.addFilterBefore(prpf, UsernamePasswordAuthenticationFilter.class);
-		}
-	}
-*/
 	@Order(80)
 	@Configuration
 	public static class LoginWebSecurityAdapter extends WebSecurityConfigurerAdapter {
@@ -98,9 +77,6 @@ public class OAuthConfiguration {
 
 		@Autowired
 		private OpenIDConsumer openIdConsumer;
-
-		@Autowired
-		private AuthenticationFailureHandler authenticationFailureHandler;
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -112,7 +88,7 @@ public class OAuthConfiguration {
 						.logout().logoutSuccessUrl("http://www.appdirect.com")
 					.and()
 						.openidLogin()
-						.failureHandler(authenticationFailureHandler)
+						.failureUrl("/denied")
 						.loginPage("/login")
 						.permitAll()
 						.loginProcessingUrl("/openid")

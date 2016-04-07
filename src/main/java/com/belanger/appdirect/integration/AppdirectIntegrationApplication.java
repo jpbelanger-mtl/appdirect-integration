@@ -59,7 +59,7 @@ public class AppdirectIntegrationApplication extends SpringBootServletInitialize
 	@Bean
 	ConfigurableWroFilter webResourceOptimzer() {
 		ConfigurableWroFilter wroFilter = new ConfigurableWroFilter();
-		wroFilter.setCacheUpdatePeriod(5);
+		wroFilter.setCacheUpdatePeriod(0); //This value should be externalized into a spring properties.
 		wroFilter.setWroManagerFactory(webResourceOptimizerManager());
 
 		return wroFilter;
